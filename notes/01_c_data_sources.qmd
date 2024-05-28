@@ -1,0 +1,17 @@
+---
+title: "Chapter 1 - Data Sources"
+author: "Maciej Dzialo"
+format: html
+---
+
+```{r sql-setup}
+
+# establish connection with database
+con <- DBI::dbConnect(duckdb::duckdb(), dbdir = here::here("data", "db", "farmers_market.duckdb"), read_only = TRUE)
+
+# define default connection for all sql chunk
+knitr::opts_chunk$set(connection=con)
+
+```
+
+

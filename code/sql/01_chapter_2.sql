@@ -1,0 +1,1 @@
+-- !preview conn=DBI::dbConnect(duckdb::duckdb())

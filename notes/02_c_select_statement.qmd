@@ -1,0 +1,51 @@
+---
+title: "Chapter 1 - Data Sources"
+author: "Maciej Dzialo"
+format: html
+---
+
+```{r sql-setup}
+
+# establish connection with database
+con <- DBI::dbConnect(duckdb::duckdb(), dbdir = here::here("data", "db", "farmers_market.duckdb"), read_only = TRUE)
+
+# define default connection for all sql chunk
+knitr::opts_chunk$set(connection=con)
+
+```
+
+
+```{sql}
+
+-- selecting all records from product table
+SELECT *
+FROM product;
+
+-- limiting all records from product table to first 5
+SELECT *
+FROM product
+LIMIT 5;
+
+-- selecting only specific columns from product table
+SELECT product_id, product_name
+FROM product
+LIMIT 5;
+
+-- selecting specific columns in a specific order using vendor_booth_assignments table & selecting firts 5 assignments
+SELECT market_date, vendor_id, booth_number
+FROM vendor_booth_assignments
+LIMIT 5;
+
+-- ordering by a column
+SELECT product_id, product_name
+FROM product
+ORDER BY product_name
+LIMIT 5;
+
+SELECT product_id, product_name
+FROM product
+ORDER BY product_id DESC
+LIMIT 5;
+
+```
+
